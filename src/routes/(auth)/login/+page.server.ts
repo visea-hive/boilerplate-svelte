@@ -1,17 +1,10 @@
-import { superValidate } from 'sveltekit-superforms';
+import { message, superValidate } from 'sveltekit-superforms';
 import type { PageServerLoad } from '../$types';
 import { loginSchema } from '$lib/schema/auth';
 import { zod4 } from 'sveltekit-superforms/adapters';
 import { redirect } from '@sveltejs/kit';
-
-const userList = [
-	{
-		id: '1',
-		email: 'super@mail.com',
-		password: 'Paspot2026',
-		name: 'Super Admin'
-	}
-];
+import axios, { HttpStatusCode } from 'axios';
+import type { User } from '$lib/types';
 
 export const load = (async () => {
 	return {
@@ -26,16 +19,27 @@ export const actions = {
 			return form;
 		}
 
-		const user = userList.find(
-			(u) => u.email === form.data.email && u.password === form.data.password
+		console.log(form.data);
+
+		const { status, data }: { status: HttpStatusCode; data: User } = await axios.post(
+			'https://dummyjson.com/auth/login',
+			{
+				username: 'emilys',
+				password: form.data.password,
+				expiresInMins: 300
+			},
+			{ headers: { 'Content-Type': 'application/json' }, withCredentials: true }
 		);
-		if (!user) {
-			form.errors.email = ['Invalid email or password'];
-			return form;
+
+		console.log(status);
+		console.log(data);
+
+		if (status !== HttpStatusCode.Ok) {
+			return message(form, 'Login gagal! Email atau password salah');
 		}
 
 		// Store the user ID in a cookie
-		cookies.set('userId', user.id, {
+		cookies.set('accessToken', data.accessToken, {
 			path: '/',
 			httpOnly: true,
 			sameSite: 'strict',
