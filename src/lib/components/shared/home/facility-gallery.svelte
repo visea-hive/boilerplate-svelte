@@ -13,7 +13,9 @@
 		Moon,
 		Warehouse
 	} from '@lucide/svelte';
-
+	import collapse1 from '$lib/assets/img/collapse/collapse-1.png';
+	import collapse2 from '$lib/assets/img/collapse/collapse-2.png';
+	import collapse3 from '$lib/assets/img/collapse/collapse-3.png';
 	const rows = [
 		// Variant 1: Tengah Expand
 		{
@@ -21,7 +23,7 @@
 			items: [
 				{
 					id: 1,
-					image: 'https://picsum.photos/seed/fac1/800/800',
+					image: collapse1,
 					features: [
 						{
 							icon: Trophy,
@@ -47,7 +49,7 @@
 				},
 				{
 					id: 2,
-					image: 'https://picsum.photos/seed/fac2/1200/800',
+					image: collapse2,
 					features: [
 						{
 							icon: Leaf,
@@ -73,7 +75,7 @@
 				},
 				{
 					id: 3,
-					image: 'https://picsum.photos/seed/fac3/800/800',
+					image: collapse3,
 					features: [
 						{
 							icon: ParkingCircle,
@@ -100,7 +102,7 @@
 	</div>
 
 	<div class="space-y-6">
-		{#each rows as row}
+		{#each rows as row, i (i)}
 			<ExpandableGallery items={row.items} defaultActive={row.activeIndex} />
 		{/each}
 	</div>

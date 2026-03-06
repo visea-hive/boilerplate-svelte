@@ -7,11 +7,38 @@
 	import { superForm, type Infer, type SuperValidated } from 'sveltekit-superforms';
 	import { zod4Client } from 'sveltekit-superforms/adapters';
 	import { loginSchema } from '$lib/schema/auth';
+	import { authService } from '$lib/api/services/auth-service';
+	import { goto } from '$app/navigation'; // For redirection
 
 	let { form: formProps }: { form: SuperValidated<Infer<typeof loginSchema>> } = $props();
 
 	const form = superForm(formProps, {
-		validators: zod4Client(loginSchema)
+		validators: zod4Client(loginSchema),
+		SPA: true, // Use client-side handling
+		async onUpdate({ form }) {
+			if (!form.valid) return;
+
+			try {
+				// 1. Call Login API
+				// Using the user's specific request structure (handled in service)
+				const loginData = await authService.login({
+					username: form.data.username,
+					password: form.data.password
+				});
+
+				console.log('Login successful:', loginData);
+
+				// 2. Call /auth/me for user details
+				const userProfile = await authService.getUserProfile();
+				console.log('User Profile:', userProfile);
+
+				// 3. Success Redirect
+				goto('/');
+			} catch (error: any) {
+				console.error('Login Error:', error);
+				// Optionally set form error
+			}
+		}
 	});
 
 	const { form: formData, enhance, delayed } = form;
@@ -26,11 +53,11 @@
 	</Card.Header>
 	<Card.Content>
 		<form method="POST" use:enhance class="space-y-4">
-			<Form.Field {form} name="email">
+			<Form.Field {form} name="username">
 				<Form.Control>
 					{#snippet children({ props })}
-						<Form.Label>Email</Form.Label>
-						<Input {...props} bind:value={$formData.email} />
+						<Form.Label>Username</Form.Label>
+						<Input {...props} bind:value={$formData.username} placeholder="e.g. emilys" />
 					{/snippet}
 				</Form.Control>
 				<Form.Description />

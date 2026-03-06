@@ -1,17 +1,5 @@
 <script lang="ts">
-	import {
-		Leaf,
-		MonitorPlay,
-		Cpu,
-		BookOpenCheck,
-		ParkingCircle,
-		Users,
-		Car,
-		Trophy,
-		Waves,
-		Moon,
-		Warehouse
-	} from '@lucide/svelte';
+
 	import { fly } from 'svelte/transition';
 
 	interface Feature {
@@ -36,12 +24,12 @@
 </script>
 
 <div class="flex h-[400px] w-full gap-4 md:h-[600px]">
-	{#each items as item, i}
+	{#each items as item, i (item.id)}
 		<!-- svelte-ignore a11y_no_static_element_interactions -->
 		<div
 			class="relative h-full cursor-pointer overflow-hidden transition-all duration-700 ease-in-out {activeIndex ===
 			i
-				? 'flex-[4]'
+				? 'flex-4'
 				: 'flex-1'} 
 				{i < activeIndex ? 'rounded-tr-[100px]' : ''}
 				{i > activeIndex ? 'rounded-tl-[100px]' : ''}
@@ -59,9 +47,9 @@
 
 			<!-- Overlay for Collapsed State -->
 			<div
-				class="absolute inset-0 bg-black/20 transition-opacity duration-500 {activeIndex === i
+				class="absolute inset-0 bg-black/40 transition-opacity duration-500 {activeIndex === i
 					? 'opacity-0'
-					: 'opacity-100'}"
+					: 'opacity-70'}"
 			></div>
 
 			<!-- Content (Only visible when expanded) -->
@@ -73,7 +61,7 @@
 						? 'grid-cols-2'
 						: 'grid-cols-3'}"
 				>
-					{#each item.features as feature, fi}
+					{#each item.features as feature, fi (feature.title)}
 						<div
 							class="flex w-[280px] flex-col gap-4 rounded-3xl border border-white/20 bg-black/30 p-4 text-white backdrop-blur-md {item
 								.features.length > 3

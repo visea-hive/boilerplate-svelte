@@ -1,6 +1,5 @@
 <script lang="ts">
 	import emblaCarouselSvelte from 'embla-carousel-svelte';
-	import { ChevronLeft, ChevronRight } from '@lucide/svelte';
 	import { onMount, onDestroy } from 'svelte';
 	import CarouselNavigation from '$lib/components/ui/carousel-navigation.svelte';
 
@@ -82,7 +81,7 @@
 		onemblaInit={onInit}
 	>
 		<div class="flex h-full">
-			{#each slides as slide, i}
+			{#each slides as slide, i (slide.title)}
 				<div class="relative h-full min-w-0 flex-[0_0_100%]">
 					<!-- Image Overlay -->
 					<div class="absolute inset-0 z-0 bg-black/40 transition-opacity duration-1000">

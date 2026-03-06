@@ -2,6 +2,8 @@
 	import { Button } from '$lib/components/ui/button';
 	import { Moon, ChevronDown } from '@lucide/svelte';
 	import { fade, fly } from 'svelte/transition';
+	import logoAlkabira from '$lib/assets/img/logo/logo-alkabira.png';
+	import logoAlAzhar from '$lib/assets/img/logo/logo-alazhar.png';
 
 	let activeDropdown = $state<string | null>(null);
 
@@ -90,11 +92,11 @@
 		<div
 			class="absolute top-px left-6 flex items-center rounded-br-3xl rounded-bl-3xl bg-[#00000033] p-3 backdrop-blur-[25px]"
 		>
-			<div class="h-[84px] w-[84px] overflow-hidden rounded-full">
+			<div class="h-[90px] w-[90px] overflow-hidden rounded-full bg-white p-3">
 				<img
-					src="https://picsum.photos/seed/visea1/200"
-					alt="Logo Left"
-					class="h-full w-full rounded-full object-cover"
+					src={logoAlkabira}
+					alt="Logo Al-Kabira"
+					class="h-full w-full object-cover object-center"
 				/>
 			</div>
 		</div>
@@ -176,9 +178,9 @@
 		>
 			<div class="h-[84px] w-[84px] overflow-hidden rounded-full">
 				<img
-					src="https://picsum.photos/seed/visea2/200"
-					alt="Logo Right"
-					class="h-full w-full rounded-full object-cover"
+					src={logoAlAzhar}
+					alt="Logo Al-Azhar"
+					class="h-full w-full rounded-full bg-white object-cover"
 				/>
 			</div>
 		</div>

@@ -2,25 +2,27 @@
 	import emblaCarouselSvelte from 'embla-carousel-svelte';
 	import type { EmblaOptionsType } from 'embla-carousel';
 	import { Button } from '$lib/components/ui/button';
-
+	import school1 from '$lib/assets/img/slider/school-1.png';
+	import school2 from '$lib/assets/img/slider/school-2.png';
+	import school3 from '$lib/assets/img/slider/school-3.jpg';
 	const items = [
 		{
 			title: 'Tingkat Sekolah Menengah Pertama',
 			subtitle: 'SMP Islam Al Azhar',
 			buttonText: 'Selengkapnya',
-			image: 'https://picsum.photos/seed/smp/800/600'
+			image: school1
 		},
 		{
 			title: 'Tingkat Sekolah Menengah Atas',
 			subtitle: 'SMA Islam Al Azhar',
 			buttonText: 'Selengkapnya',
-			image: 'https://picsum.photos/seed/sma/800/600'
+			image: school2
 		},
 		{
 			title: 'Pendaftaran & Informasi',
 			subtitle: 'Informasi lengkap dan alur pendaftaran.',
 			buttonText: 'Hubungi Kami',
-			image: 'https://picsum.photos/seed/reg/800/600'
+			image: school3
 		}
 	];
 
@@ -28,11 +30,11 @@
 </script>
 
 <section class="mt-3 mb-12">
-	<div class="overflow-hidden" use:emblaCarouselSvelte={options}>
+	<div class="overflow-hidden" use:emblaCarouselSvelte={{ options, plugins: [] }}>
 		<div class="flex gap-6">
-			{#each items as item}
+			{#each items as item (item.title)}
 				<div
-					class="relative h-[400px] min-w-0 flex-[0_0_100%] overflow-hidden rounded-4xl md:flex-[0_0_35%]"
+					class="relative h-[400px] min-w-0 flex-[0_0_100%] overflow-hidden rounded-t-[46px] rounded-b-xl md:flex-[0_0_35%]"
 				>
 					<!-- Background Image -->
 					<img
@@ -42,9 +44,7 @@
 					/>
 
 					<!-- Overlay Gradient -->
-					<div
-						class="absolute inset-0 bg-linear-to-t from-black/80 via-black/20 to-transparent"
-					></div>
+					<div class="absolute inset-0 bg-[#302B1D80]"></div>
 
 					<!-- Content -->
 					<div class="absolute inset-0 flex flex-col justify-end p-8 text-white">

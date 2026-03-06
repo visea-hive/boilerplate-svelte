@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { Button } from '$lib/components/ui/button';
-	import { Youtube, Instagram, Twitter, ShoppingBag, Music } from '@lucide/svelte';
+	import logoAlkabira from '$lib/assets/img/logo/logo-alkabira.png';
+	import logoAlAzhar from '$lib/assets/img/logo/logo-alazhar.png';
 
 	const navigasi = [
 		{ name: 'Tentang Kami', href: '#' },
@@ -16,9 +17,9 @@
 	];
 </script>
 
-<footer class="w-full">
+<footer class="z-20 -mt-4 w-full bg-transparent">
 	<!-- CTA Section -->
-	<section class="bg-[#F2F0E6] px-6 py-9 text-center">
+	<section class="rounded-t-3xl bg-[#F2F0E6] px-6 py-9 text-center">
 		<div class="container mx-auto">
 			<h2 class="mb-2 text-3xl font-bold text-txt-essentials-primary md:text-[48px]">
 				Mulai Perjalanan Pendidikan Terbaik Hari Ini
@@ -48,12 +49,8 @@
 			<!-- Brand Column -->
 			<div class="col-span-4 space-y-2">
 				<div class="flex items-center gap-2">
-					<div class="size-[30px] overflow-hidden rounded-full bg-white shadow-sm">
-						<img
-							src="https://picsum.photos/seed/visealogo/100"
-							alt="Logo"
-							class="h-full w-full object-contain"
-						/>
+					<div class="size-[30px] overflow-hidden rounded-full bg-white p-1 shadow-sm">
+						<img src={logoAlkabira} alt="Logo" class="h-full w-full object-cover" />
 					</div>
 					<h3 class="text-2xl leading-[35px] font-bold">Yayasan Islam Al Kabira</h3>
 				</div>
@@ -62,11 +59,7 @@
 						<span class="text-[10px] tracking-widest whitespace-nowrap">Official Partner</span>
 						<div class="flex items-center gap-1.5">
 							<div class="size-4 overflow-hidden rounded-full">
-								<img
-									src="https://picsum.photos/seed/alazhar/50"
-									alt="Al Azhar"
-									class="h-full w-full object-contain"
-								/>
+								<img src={logoAlAzhar} alt="Al Azhar" class="h-full w-full object-contain" />
 							</div>
 							<span class="text-xs">YPI Al Azhar</span>
 						</div>
@@ -133,7 +126,7 @@
 			<div class="col-span-1 space-y-6">
 				<h3 class="text-lg font-bold capitalize">Navigasi</h3>
 				<ul class="space-y-2">
-					{#each navigasi as item}
+					{#each navigasi as item (item.name)}
 						<li>
 							<a href={item.href} class="text-sm opacity-80 transition-opacity hover:opacity-100">
 								{item.name}
@@ -147,7 +140,7 @@
 			<div class="col-span-1 space-y-6">
 				<h3 class="text-lg font-semibold capitalize">Layanan</h3>
 				<ul class="space-y-4">
-					{#each layanan as item}
+					{#each layanan as item (item.name)}
 						<li>
 							<a href={item.href} class="text-sm opacity-80 transition-opacity hover:opacity-100">
 								{item.name}

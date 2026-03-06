@@ -149,6 +149,7 @@
   --color-txt-essentials-primary: var(--txt-essentials-primary);
 
   --background-image-brand-footer-gradient: linear-gradient(118.93deg, #939087 6.58%, #80775D 102.79%);
+  --background-image-brand-gradient: linear-gradient(118.93deg, #939087 6.58%, #80775D 102.79%);
 }
 
 @layer base {
