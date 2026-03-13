@@ -4,6 +4,7 @@
 	import { fade, fly } from 'svelte/transition';
 	import logoAlkabira from '$lib/assets/img/logo/logo-alkabira.png';
 	import logoAlAzhar from '$lib/assets/img/logo/logo-alazhar.png';
+	import { resolve } from '$app/paths';
 
 	let activeDropdown = $state<string | null>(null);
 
@@ -14,11 +15,11 @@
 			href: '#',
 			dropdown: true,
 			children: [
-				{ name: 'Sejarah Yayasan', href: '#' },
-				{ name: 'Visi & Misi YPI Al Azhar', href: '#' },
-				{ name: 'Lokasi Kami', href: '#' },
-				{ name: 'Kontak Kami', href: '#' },
-				{ name: 'Berita', href: '#' }
+				{ name: 'Sejarah Yayasan', href: '/about-us/history' },
+				{ name: 'Visi & Misi YPI Al Azhar', href: '/about-us/vision-and-mission' },
+				{ name: 'Lokasi Kami', href: '/about-us/our-location' },
+				{ name: 'Kontak Kami', href: '/about-us/our-contact' },
+				{ name: 'Berita', href: '/about-us/news' }
 			]
 		},
 		{
@@ -104,14 +105,14 @@
 		<!-- Center Navigation Section -->
 		<div class="flex grow items-center justify-between px-[clamp(1.5rem,8.2vw,158px)] py-4">
 			<div class="flex items-center gap-1 md:gap-5">
-				{#each navItems as item}
+				{#each navItems as item, idx (idx)}
 					<div
 						class="relative"
 						onmouseenter={() => (activeDropdown = item.name)}
 						onmouseleave={() => (activeDropdown = null)}
 					>
 						<a
-							href={item.href}
+							href={resolve(item.href as any)}
 							class="flex items-center gap-1.5 transition-colors {item.active
 								? 'rounded-full border border-white/10 bg-white/10 px-4 py-2 text-white'
 								: 'px-1 text-white hover:text-white/80'}"
@@ -139,9 +140,9 @@
 							>
 								<div class="overflow-hidden rounded-xl bg-white p-2 shadow-2xl">
 									<div class="flex flex-col">
-										{#each item.children as child}
+										{#each item.children as child, idx (idx)}
 											<a
-												href={child.href}
+												href={resolve(child.href as any)}
 												class="border-b border-brand-essentials-primary px-3 py-2 text-[14px] font-normal text-txt-default transition-colors last:border-b-0 hover:bg-neutral-50"
 											>
 												{child.name}
@@ -159,7 +160,7 @@
 			<div class="flex items-center gap-3">
 				<Button
 					variant="outline"
-					class="rounded-full border-white bg-transparent px-6 py-1 text-[13px] font-semibold text-white hover:bg-white hover:text-black"
+					class="rounded-full border-white bg-transparent px-6 py-1 text-[13px] font-semibold text-white hover:bg-white hover:text-txt-essentials-primary"
 				>
 					Sign In
 				</Button>

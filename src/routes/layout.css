@@ -46,7 +46,9 @@
   --brand-tertiary: #242d38;
   --brand-tertiary-foreground: #ffffff;
   --brand-essentials-primary: #EFEFEF;
+  --brand-essentials-secondary: #5D5D5D;
   --brand-subordinate-primary: #99927D;
+  --brand-essentials-shade: #F0F8FF;
 
   /* Typography Colors */
   --txt-default: #5D5D5D;
@@ -90,6 +92,8 @@
   --txt-essentials-primary: #333333;
 
   --brand-essentials-primary: #EFEFEF;
+  --brand-essentials-secondary: #5D5D5D;
+  --brand-essentials-shade: #F0F8FF;
   --brand-subordinate-primary: #99927D;
 }
 
@@ -143,6 +147,8 @@
   --color-brand-subordinate-primary: var(--brand-subordinate-primary);
 
   --color-brand-essentials-primary: var(--brand-essentials-primary);
+  --color-brand-essentials-secondary: var(--brand-essentials-secondary);
+  --color-brand-essentials-shade: var(--brand-essentials-shade);
 
   /* Typography Colors Setup */
   --color-txt-default: var(--txt-default);
@@ -150,6 +156,7 @@
 
   --background-image-brand-footer-gradient: linear-gradient(118.93deg, #939087 6.58%, #80775D 102.79%);
   --background-image-brand-gradient: linear-gradient(118.93deg, #939087 6.58%, #80775D 102.79%);
+
 }
 
 @layer base {

@@ -58,7 +58,7 @@
 						<div class="flex">
 							<Button
 								variant="outline"
-								class="rounded-full border-white bg-white/10 px-6 py-2 text-sm font-medium text-white hover:bg-white hover:text-black"
+								class="rounded-full border-white bg-white/10 px-6 py-2 text-sm font-medium text-white hover:bg-white hover:text-txt-essentials-primary"
 							>
 								{item.buttonText}
 							</Button>
