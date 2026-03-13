@@ -4,7 +4,7 @@
 	import * as Form from '$lib/components/ui/form/index';
 	import { Input } from '$lib/components/ui/input/index';
 	import { Eye, EyeOff } from '@lucide/svelte';
-	import SuperDebug, { superForm, type Infer, type SuperValidated } from 'sveltekit-superforms';
+	import { superForm, type Infer, type SuperValidated } from 'sveltekit-superforms';
 	import { zod4Client } from 'sveltekit-superforms/adapters';
 	import { loginSchema } from '$lib/schema/auth';
 
@@ -14,7 +14,7 @@
 		validators: zod4Client(loginSchema)
 	});
 
-	const { form: formData, enhance, delayed } = form;
+	const { form: formData, enhance } = form;
 
 	let viewPassword = $state(false);
 </script>
@@ -26,14 +26,11 @@
 	</Card.Header>
 	<Card.Content>
 		<form method="POST" use:enhance class="space-y-4">
-			<div class="py-4">
-				<SuperDebug data={formData} />
-			</div>
-			<Form.Field {form} name="email">
+			<Form.Field {form} name="username">
 				<Form.Control>
 					{#snippet children({ props })}
-						<Form.Label>Email</Form.Label>
-						<Input {...props} bind:value={$formData.email} />
+						<Form.Label>Username</Form.Label>
+						<Input {...props} bind:value={$formData.username} placeholder="e.g. emilys" />
 					{/snippet}
 				</Form.Control>
 				<Form.Description />

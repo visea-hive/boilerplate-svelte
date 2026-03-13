@@ -1,56 +1,54 @@
-import { message, superValidate } from 'sveltekit-superforms';
-import type { PageServerLoad } from '../$types';
+import { superValidate } from 'sveltekit-superforms';
+import type { PageServerLoad, Actions } from './$types';
 import { loginSchema } from '$lib/schema/auth';
 import { zod4 } from 'sveltekit-superforms/adapters';
 import { redirect } from '@sveltejs/kit';
-import axios, { HttpStatusCode } from 'axios';
-import type { User } from '$lib/types';
+import { authService } from '$lib/api/services/auth-service';
 
-export const load = (async () => {
+export const load = (async ({ cookies }) => {
+	const accessToken = cookies.get('accessToken');
+
+	if (accessToken) {
+		throw redirect(302, '/');
+	}
+
 	return {
 		form: await superValidate(zod4(loginSchema))
 	};
 }) satisfies PageServerLoad;
 
-export const actions = {
+export const actions: Actions = {
 	default: async ({ request, cookies }) => {
 		const form = await superValidate(request, zod4(loginSchema));
 		if (!form.valid) {
 			return form;
 		}
 
-		console.log(form.data);
+		try {
+			const loginData = await authService.login({
+				username: form.data.username,
+				password: form.data.password
+			});
 
-		const { status, data }: { status: HttpStatusCode; data: User } = await axios.post(
-			'https://dummyjson.com/auth/login',
-			{
-				username: 'emilys',
-				password: form.data.password,
-				expiresInMins: 300
-			},
-			{ headers: { 'Content-Type': 'application/json' }, withCredentials: true }
-		);
+			if (!loginData.accessToken) {
+				form.errors.username = ['Login failed'];
+				return form;
+			}
 
-		console.log(status);
-		console.log(data);
+			cookies.set('accessToken', loginData.accessToken, {
+				path: '/',
+				httpOnly: true,
+				sameSite: 'strict',
+				secure: import.meta.env.PROD,
+				maxAge: 60 * 60 * 24 * 30
+			});
 
-		if (status !== HttpStatusCode.Ok) {
-			return message(form, 'Login gagal! Email atau password salah');
+			console.log('Login success');
+			throw redirect(302, '/');
+		} catch (err) {
+			if (err instanceof Error && err.name === 'Redirect') throw err;
+			console.error('Server side login error:', err);
+			return form;
 		}
-
-		// Store the user ID in a cookie
-		cookies.set('accessToken', data.accessToken, {
-			path: '/',
-			httpOnly: true,
-			sameSite: 'strict',
-			secure: process.env.NODE_ENV === 'production',
-			maxAge: 60 * 60 * 24 * 7 // 1 week
-		});
-
-		console.log('Login success');
-
-		redirect(302, '/');
-
-		return form;
 	}
 };
