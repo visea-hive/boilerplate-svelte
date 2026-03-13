@@ -1,12 +1,7 @@
 // See https://svelte.dev/docs/kit/types#app.d.ts
 // for information about these interfaces
 
-type User = {
-	id: string;
-	name: string;
-	email: string;
-};
-
+import type { User } from '$lib/api/services/auth-service';
 declare global {
 	namespace App {
 		// interface Error {}

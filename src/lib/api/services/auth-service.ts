@@ -53,14 +53,7 @@ export const authService = {
             expiresInMins: 30
         });
 
-        const data = res.data;
-
-        // Note: For server-side actions, we handle the cookie set in the action itself
-        // to avoid dependency on js-cookie and to work with SvelteKit's event.cookies.
-        if (browser && data.accessToken) {
-            authService.setToken(data.accessToken);
-        }
-        return data;
+        return res.data;
     },
 
     getUserProfile: async (token?: string) => {

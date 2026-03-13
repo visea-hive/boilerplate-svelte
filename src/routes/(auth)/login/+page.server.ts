@@ -37,7 +37,7 @@ export const actions: Actions = {
 
 			cookies.set('accessToken', loginData.accessToken, {
 				path: '/',
-				httpOnly: false,
+				httpOnly: true,
 				sameSite: 'strict',
 				secure: import.meta.env.PROD,
 				maxAge: 60 * 60 * 24 * 30
