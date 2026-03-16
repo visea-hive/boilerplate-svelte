@@ -1,0 +1,25 @@
+name: Deploy Staging
+
+on:
+  push:
+    branches:
+      - dev
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to Staging Server
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_KEY }}
+          script: |
+            cd /opt/stacks/apps/sist/landing-page
+            eval "$(ssh-agent -s)"
+            ssh-add ~/.ssh/github
+            git pull origin dev
+            docker compose -f docker-compose-staging.yml down
+            docker rmi sist-aa-landing-page-staging-img || true
+            docker compose -f docker-compose-staging.yml up -d --build
