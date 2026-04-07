@@ -16,6 +16,11 @@
         isSeparator?: boolean;
     };
 
+    export type NavGroup = {
+        title: string;
+        items: NavItem[];
+    };
+
     export type UserProfile = {
         name: string;
         icon?: any;
@@ -44,13 +49,17 @@
         ...restProps 
     }: {
         class?: string,
-        items?: NavItem[],
+        items?: NavItem[] | NavGroup[],
         user?: UserProfile,
         footerSnippet?: Snippet,
         [key: string]: any
     } = $props();
 
     const sidebar = useSidebar();
+    
+    const isGrouped = $derived(items.length > 0 && 'items' in items[0]);
+    const navGroups = $derived(isGrouped ? items as NavGroup[] : []);
+    const flatItems = $derived(!isGrouped ? items as NavItem[] : []);
     
     import logoAlkabira from "$lib/assets/img/logo/logo-alkabira.png";
     import logoAlazhar from "$lib/assets/img/logo/logo-alazhar.png";
@@ -186,13 +195,30 @@
     </div>
 
 	<Sidebar.Content>
-		<Sidebar.Group>
-			<Sidebar.Menu class="gap-1.5 px-2">
-                {#each items as item, i (item.title ?? i)}
-                    {@render renderNavItem(item)}
-                {/each}
-			</Sidebar.Menu>
-		</Sidebar.Group>
+        {#if isGrouped}
+            {#each navGroups as group (group.title)}
+                <Sidebar.Group>
+                    {#if sidebar.state === 'expanded'}
+                        <Sidebar.GroupLabel class="px-4 text-xs font-bold text-neutral-400 uppercase tracking-widest leading-none my-2">
+                            {group.title}
+                        </Sidebar.GroupLabel>
+                    {/if}
+                    <Sidebar.Menu class="gap-1.5 px-2">
+                        {#each group.items as item, i (item.title ?? i)}
+                            {@render renderNavItem(item)}
+                        {/each}
+                    </Sidebar.Menu>
+                </Sidebar.Group>
+            {/each}
+        {:else}
+            <Sidebar.Group>
+                <Sidebar.Menu class="gap-1.5 px-2">
+                    {#each flatItems as item, i (item.title ?? i)}
+                        {@render renderNavItem(item)}
+                    {/each}
+                </Sidebar.Menu>
+            </Sidebar.Group>
+        {/if}
 	</Sidebar.Content>
 
     <div class={sidebar.state === 'expanded' ? "px-4" : "px-2"}>

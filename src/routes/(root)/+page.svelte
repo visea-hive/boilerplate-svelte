@@ -80,7 +80,8 @@
 			bgColor: 'bg-rose-50',
 			borderColor: 'border-rose-100',
 			components: [
-				{ name: 'Toast', path: '/toast' }
+				{ name: 'Toast', path: '/toast' },
+				{ name: 'Modal', path: '/modal' }
 			]
 		}
 	];
