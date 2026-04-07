@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { Button } from '$lib/components/ui/button';
-	import { Moon, ChevronDown } from '@lucide/svelte';
+	import { Moon, ChevronDown } from 'lucide-svelte';
 	import { fade, fly } from 'svelte/transition';
 	import logoAlkabira from '$lib/assets/img/logo/logo-alkabira.png';
 	import logoAlAzhar from '$lib/assets/img/logo/logo-alazhar.png';

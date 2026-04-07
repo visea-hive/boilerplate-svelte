@@ -3,7 +3,7 @@
 	import * as Card from '$lib/components/ui/card/index';
 	import * as Form from '$lib/components/ui/form/index';
 	import { Input } from '$lib/components/ui/input/index';
-	import { Eye, EyeOff } from '@lucide/svelte';
+	import { Eye, EyeOff } from 'lucide-svelte';
 	import { superForm, type Infer, type SuperValidated } from 'sveltekit-superforms';
 	import { zod4Client } from 'sveltekit-superforms/adapters';
 	import { loginSchema } from '$lib/schema/auth';
