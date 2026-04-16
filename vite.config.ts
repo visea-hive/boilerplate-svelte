@@ -12,6 +12,9 @@ export default defineConfig({
 		devtoolsJson(),
 		paraglideVitePlugin({ project: './project.inlang', outdir: './src/lib/paraglide' })
 	],
+	ssr: {
+		noExternal: ['lucide-svelte', '@lucide/svelte']
+	},
 	test: {
 		expect: { requireAssertions: true },
 		projects: [

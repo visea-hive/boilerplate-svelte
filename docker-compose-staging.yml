@@ -1,0 +1,15 @@
+services:
+  app-staging:
+    image: sist-aa-landing-page-staging-img
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: sist-aa-landing-page-staging
+    ports:
+      - '3880:3000'
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+      # Uncomment and configure if SvelteKit requires an ORIGIN specifically
+      # - ORIGIN=http://your-staging-domain.com
+    restart: unless-stopped

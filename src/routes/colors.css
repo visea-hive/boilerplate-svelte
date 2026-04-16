@@ -1,0 +1,159 @@
+:root {
+  /* ==========================================================================
+     COLOR PALETTES
+     ========================================================================== */
+
+  /* Blue School Palette */
+  --blue-school-50: #f0f8ff;
+  --blue-school-75: #e6f3ff;
+  --blue-school-100: #b0daff;
+  --blue-school-200: #8ac8ff;
+  --blue-school-300: #54afff;
+  --blue-school-400: #33a0ff;
+  --blue-school-500: #0088ff;
+  --blue-school-600: #007ce8;
+  --blue-school-700: #0061b5;
+  --blue-school-800: #004b8c;
+  --blue-school-900: #00396b;
+  --blue-school-950: #002f57;
+
+  /* Beige School Palette */
+  --beige-school-50: #f5f4f1;
+  --beige-school-100: #f2f1ef;
+  --beige-school-200: #d8d5cd;
+  --beige-school-300: #c5c0b4;
+  --beige-school-400: #aaa492;
+  --beige-school-500: #99927d;
+  --beige-school-600: #80775d;
+  --beige-school-700: #746c55;
+  --beige-school-800: #5b5442;
+  --beige-school-900: #464133;
+  --beige-school-950: #363227;
+
+  /* Semantic Colors (Shared) */
+  --emerald-50: #ecfdf5;
+  --emerald-600: #059669;
+  --neon-carrot-50: #fff8ed;
+  --neon-carrot-600: #ef5f07;
+  --red-50: #fff1f0;
+  --red-600: #ff0d00;
+  --indigo-50: #efeeff;
+  --indigo-600: #5246e5;
+  
+  /* Neutral Palette */
+  --neutral-20: #f9f9f9;
+  --neutral-25: #f5f5f5;
+  --neutral-50: #f6f6f6;
+  --neutral-100: #e7e7e7;
+  --neutral-200: #d1d1d1;
+  --neutral-300: #b0b0b0;
+  --neutral-400: #888888;
+  --neutral-500: #6d6d6d;
+  --neutral-600: #5d5d5d;
+  --neutral-700: #4f4f4f;
+  --neutral-800: #454545;
+  --neutral-900: #333333;
+  --neutral-950: #262626;
+
+  /* ==========================================================================
+     THEME CONFIGURATION
+     HOW TO SWITCH THEME:
+     1. To use "Blue School": Uncomment the Blue School blocks and Comment the Beige blocks.
+     2. To use "Beige School": Uncomment the Beige School blocks and Comment the Blue blocks.
+     ========================================================================== */
+
+  /* --- ACTIVE THEME: BLUE SCHOOL --- */
+  
+  /* Brand Essentials (Blue) */
+  --brand-primary: var(--blue-school-500);
+  --brand-hover: var(--blue-school-800);
+  --brand-selected: var(--blue-school-700);
+  --brand-press: var(--blue-school-950);
+  --brand-disable: var(--blue-school-200);
+  --brand-shade: var(--blue-school-50);
+
+  /* BG Essentials (Blue) */
+  --bg-primary: var(--neutral-20);
+  --bg-secondary: var(--neutral-25);
+  --bg-tertiary: var(--blue-school-200);
+  --bg-light: rgba(255, 255, 255, 0.5);
+  --bg-dark: var(--neutral-800);
+  --bg-disable: var(--neutral-200);
+  --bg-shade: var(--neutral-50);
+  --bg-child-selected: var(--blue-school-75);
+
+  /* Icon Essentials (Blue) */
+  --icon-primary: var(--blue-school-600);
+  --icon-secondary: var(--indigo-600);
+  --icon-tertiary: var(--blue-school-800);
+  --icon-light: rgba(255, 255, 255, 0.5);
+  --icon-dark: var(--neutral-800);
+
+  /* Border Essentials (Blue) */
+  --border-primary: #ffffff;
+  --border-secondary: var(--neutral-100);
+  --border-tertiary: var(--blue-school-100);
+  --border-dark: var(--neutral-950);
+
+
+  /* --- INACTIVE THEME: BEIGE SCHOOL (Commented) ---
+  
+  --brand-primary: var(--beige-school-500);
+  --brand-hover: var(--beige-school-800);
+  --brand-selected: var(--beige-school-700);
+  --brand-press: var(--beige-school-950);
+  --brand-disable: var(--beige-school-200);
+  --brand-shade: var(--beige-school-50);
+
+  --bg-primary: var(--neutral-20);
+  --bg-secondary: var(--neutral-25);
+  --bg-tertiary: var(--beige-school-200);
+  --bg-light: rgba(255, 255, 255, 0.5);
+  --bg-dark: var(--neutral-800);
+  --bg-disable: var(--neutral-200);
+  --bg-shade: var(--neutral-50);
+  --bg-child-selected: var(--beige-school-100);
+
+  --icon-primary: var(--beige-school-600);
+  --icon-secondary: var(--beige-school-700);
+  --icon-tertiary: var(--beige-school-800);
+  --icon-light: rgba(255, 255, 255, 0.5);
+  --icon-dark: var(--neutral-800);
+
+  --border-primary: #ffffff;
+  --border-secondary: var(--neutral-100);
+  --border-tertiary: var(--beige-school-100);
+  --border-dark: var(--neutral-950);
+  */
+
+  /* ==========================================================================
+     SEMANTIC UTILITIES (Common for all themes)
+     ========================================================================== */
+
+  /* BG Status */
+  --status-success-bg: var(--emerald-600);
+  --status-info-bg: var(--indigo-600);
+  --status-warning-bg: var(--neon-carrot-600);
+  --status-error-bg: var(--red-600);
+
+  /* BG Shade Status */
+  --status-success-shade: var(--emerald-50);
+  --status-info-shade: var(--indigo-50);
+  --status-warning-shade: var(--neon-carrot-50);
+  --status-error-shade: var(--red-50);
+
+  /* Text Semantic */
+  --text-success: var(--emerald-600);
+  --text-info: var(--indigo-600);
+  --text-warning: var(--neon-carrot-600);
+  --text-error: var(--red-600);
+  --text-disable: var(--neutral-400);
+
+  /* Icon Semantic */
+  --icon-success: var(--emerald-600);
+  --icon-info: var(--indigo-600);
+  --icon-warning: var(--neon-carrot-600);
+  --icon-error: var(--red-600);
+  --icon-disable: var(--neutral-400);
+}
+
